@@ -5,6 +5,8 @@
 
 #pragma once
 
+#define _USE_MATH_DEFINES
+
 #include "targetver.h"
 
 #include <stdio.h>
@@ -13,7 +15,6 @@
 #include <string>
 #include <iomanip>
 
-#define _USE_MATH_DEFINES
 #include <math.h>
 
 #include <iostream>

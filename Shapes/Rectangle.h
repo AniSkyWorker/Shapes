@@ -2,7 +2,7 @@
 #include "SolidShape.h"
 #include "Point.h"
 
-class CRectangle : public CSolidShape
+class CRectangle : public CAbstractSolidShape
 {
 public:
 	CRectangle(const CPoint & upleftPoint, const Vector2d & widthHeght,const Color & fillColor, const Color & lineColor)
@@ -12,6 +12,7 @@ public:
 		m_lineColor = lineColor;
 	}
 
+	// TODO: remove extra virtual keyword
 	virtual std::string GetDescription() const override;
 	virtual double GetPerimeter() const override;
 	virtual double GetArea() const override;

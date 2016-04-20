@@ -2,7 +2,7 @@
 #include "Shape.h"
 #include "Point.h"
 
-class CLineSegment : public CShape
+class CLineSegment : public CAbstractShape
 {
 public:
 	CLineSegment(const CPoint & start, const CPoint & end, const Color & color)

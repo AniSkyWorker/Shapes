@@ -1,17 +1,17 @@
 #include "stdafx.h"
 #include "Shape.h"
 
-double CShape::GetArea() const
+double CAbstractShape::GetArea() const
 {
 	return m_area;
 }
 
-double CShape::GetPerimeter() const
+double CAbstractShape::GetPerimeter() const
 {
 	return m_perimeter;
 }
 
-Color CShape::GetLineColor() const
+Color CAbstractShape::GetLineColor() const
 {
 	return m_lineColor;
 }

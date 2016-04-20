@@ -10,6 +10,15 @@
 #include <stdio.h>
 #include <tchar.h>
 
+#include <string>
+#include "../Shapes/Shape.h"
+#include "../Shapes/SolidShape.h"
 
+#define BOOST_TEST_MODULE MyTestModule
+#define BOOST_TEST_INCLUDED
+#pragma warning (disable: 4702)
+#include <boost/test/unit_test.hpp>
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 // TODO: reference additional headers your program requires here

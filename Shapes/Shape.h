@@ -4,32 +4,36 @@ typedef std::pair<double, double> Vector2d;
 
 struct Color
 {
-	Color() : R(0), G(0), B(0) {}
-	unsigned R;
-	unsigned G;
-	unsigned B;
+	explicit Color(unsigned r, unsigned g, unsigned b) : r(r), g(g), b(b) {}
+	Color() : r(0), g(0), b(0) {}
+
+	unsigned r;
+	unsigned g;
+	unsigned b;
 };
 
 class IShape
 {
 public:
+	virtual ~IShape() = default;
 	virtual double GetArea() const = 0;
 	virtual double GetPerimeter() const = 0;
 	virtual std::string GetDescription() const = 0;
 	virtual Color GetLineColor() const = 0;
 };
 
-class CShape : public IShape
+class CAbstractShape : public IShape
 {
 public:
-	CShape() : m_perimeter(0), m_area(0), m_lineColor() {}
+	CAbstractShape() = default;
+	virtual ~CAbstractShape() = default;
 
-	virtual double GetArea() const override;
-	virtual double GetPerimeter() const override;
-	virtual Color GetLineColor() const override;
+	double GetArea() const override;
+	double GetPerimeter() const override;
+	Color GetLineColor() const override;
 
 protected:
-	double m_perimeter;
-	double m_area;
+	double m_perimeter = 0;
+	double m_area = 0;
 	Color m_lineColor;
 };

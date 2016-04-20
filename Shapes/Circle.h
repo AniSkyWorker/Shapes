@@ -2,7 +2,7 @@
 #include "SolidShape.h"
 #include "Point.h"
 
-class CCircle : public CSolidShape
+class CCircle : public CAbstractSolidShape
 {
 public:
 	CCircle(const CPoint & center, const double & radius,

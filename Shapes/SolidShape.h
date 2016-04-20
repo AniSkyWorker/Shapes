@@ -4,13 +4,17 @@
 class ISolidShape
 {
 public:
-	virtual Color GetFillColor() = 0;
+	virtual ~ISolidShape() = default;
+	virtual Color GetFillColor() const = 0;
 };
 
-class CSolidShape : public ISolidShape, public CShape
+class CAbstractSolidShape : public ISolidShape, public CAbstractShape
 {
 public:
-	virtual Color GetFillColor() override;
+	CAbstractSolidShape() = default;
+	virtual ~CAbstractSolidShape();
+
+	virtual Color GetFillColor() const override;
 
 protected:
 	Color m_fillColor;

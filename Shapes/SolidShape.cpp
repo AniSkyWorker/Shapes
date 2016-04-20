@@ -1,7 +1,11 @@
 #include "stdafx.h"
 #include "SolidShape.h"
 
-Color CSolidShape::GetFillColor()
+CAbstractSolidShape::~CAbstractSolidShape()
+{
+}
+
+Color CAbstractSolidShape::GetFillColor() const
 {
 	return m_fillColor;
 }

@@ -6,8 +6,8 @@ std::string CRectangle::GetDescription() const
 	std::string description = "Rectangle: ";
 	description += "<" + m_upleftPoint.GetDescription() + "," 
 		+ "{width=" + std::to_string(m_widthHeight.first) + ",height=" + std::to_string(m_widthHeight.second) + "}" + ">, "
-		+ "P=" + std::to_string(GetArea()) + ", "
-		+ "S=" + std::to_string(GetPerimeter());
+		+ "P=" + std::to_string(GetPerimeter()) + ", "
+		+ "S=" + std::to_string(GetArea());
 	return description;
 }
 

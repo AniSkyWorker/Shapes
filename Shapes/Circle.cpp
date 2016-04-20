@@ -6,8 +6,8 @@ std::string CCircle::GetDescription() const
 	std::string description = "Circle: ";
 	description += "<" + m_center.GetDescription() + ","
 		+ std::to_string(m_radius) + ">, "
-		+ "P=" + std::to_string(GetArea()) + ", "
-		+ "S=" + std::to_string(GetPerimeter());
+		+ "P=" + std::to_string(GetPerimeter()) + ", "
+		+ "S=" + std::to_string(GetArea());
 	return description;
 }
 

@@ -157,7 +157,7 @@
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="Shapes.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="SolidShape.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

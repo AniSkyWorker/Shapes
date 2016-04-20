@@ -4,14 +4,12 @@
 std::string CPoint::GetDescription() const
 {
 	std::string description = "Point: ";
-	description += "<" + std::to_string(m_position.first) + "," + std::to_string(m_position.second) + ">, "
-		+ "P=" + std::to_string(GetArea()) + ", " 
-		+ "S=" + std::to_string(GetPerimeter());
+	description += "<" + std::to_string(m_position.first) + "," + std::to_string(m_position.second) + ">";
 
 	return description;
 }
 
-Vector2d CPoint::GetPosition()
+Vector2d CPoint::GetPosition() const
 {
 	return m_position;
 }
