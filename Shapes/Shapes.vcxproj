@@ -148,6 +148,7 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SolidShape.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StreamHandler.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Triangle.h" />
   </ItemGroup>
@@ -165,6 +166,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="StreamHandler.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
