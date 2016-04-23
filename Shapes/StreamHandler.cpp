@@ -4,6 +4,7 @@
 #include "Triangle.h"
 #include "Rectangle.h"
 #include "Circle.h"
+#include "Point.h"
 
 namespace
 {
@@ -93,8 +94,8 @@ void CStreamHandler::PrintSortedBySquareShapes() const
 void CStreamHandler::ParsePointArgs(std::istringstream & strm)
 {
 	Vector2d position;
-	strm >> position.first;
-	strm >> position.second;
+	strm >> position.x;
+	strm >> position.y;
 
 	m_shapes.push_back(std::make_shared<CPoint>(position));
 }
@@ -102,28 +103,28 @@ void CStreamHandler::ParsePointArgs(std::istringstream & strm)
 void CStreamHandler::ParseLineSegmentArgs(std::istringstream & strm)
 {
 	Vector2d firstPoint;
-	strm >> firstPoint.first;
-	strm >> firstPoint.second;
+	strm >> firstPoint.x;
+	strm >> firstPoint.y;
 
 	Vector2d secondPoint;
-	strm >> secondPoint.first;
-	strm >> secondPoint.second;
+	strm >> secondPoint.x;
+	strm >> secondPoint.y;
 
 	std::string lineColor;
 	strm >> lineColor;
 
-	m_shapes.push_back(std::make_shared<CLineSegment>(CPoint(firstPoint), CPoint(secondPoint), GetColor(lineColor)));
+	m_shapes.push_back(std::make_shared<CLineSegment>(firstPoint, secondPoint, GetColor(lineColor)));
 }
 
 void CStreamHandler::ParseRectangleArgs(std::istringstream & strm)
 {
 	Vector2d leftUpPoint;
-	strm >> leftUpPoint.first;
-	strm >> leftUpPoint.second;
+	strm >> leftUpPoint.x;
+	strm >> leftUpPoint.y;
 
 	Vector2d dimensions;
-	strm >> dimensions.first;
-	strm >> dimensions.second;
+	strm >> dimensions.x;
+	strm >> dimensions.y;
 
 	std::string lineColor;
 	strm >> lineColor;
@@ -131,14 +132,14 @@ void CStreamHandler::ParseRectangleArgs(std::istringstream & strm)
 	std::string fillColor;
 	strm >> fillColor;
 
-	m_shapes.push_back(std::make_shared<CRectangle>(CPoint(leftUpPoint), dimensions, GetColor(lineColor), GetColor(fillColor)));
+	m_shapes.push_back(std::make_shared<CRectangle>(leftUpPoint, dimensions, GetColor(lineColor), GetColor(fillColor)));
 }
 
 void CStreamHandler::ParseCircleArgs(std::istringstream & strm)
 {
 	Vector2d position;
-	strm >> position.first;
-	strm >> position.second;
+	strm >> position.x;
+	strm >> position.y;
 
 	double radius;
 	strm >> radius;
@@ -149,22 +150,22 @@ void CStreamHandler::ParseCircleArgs(std::istringstream & strm)
 	std::string fillColor;
 	strm >> fillColor;
 
-	m_shapes.push_back(std::make_shared<CCircle>(CPoint(position), radius, GetColor(lineColor), GetColor(fillColor)));
+	m_shapes.push_back(std::make_shared<CCircle>(position, radius, GetColor(lineColor), GetColor(fillColor)));
 }
 
 void CStreamHandler::ParseTriangleArgs(std::istringstream & strm)
 {
 	Vector2d topVertexPos;
-	strm >> topVertexPos.first;
-	strm >> topVertexPos.second;
+	strm >> topVertexPos.x;
+	strm >> topVertexPos.y;
 
 	Vector2d leftVertexPos;
-	strm >> leftVertexPos.first;
-	strm >> leftVertexPos.second;
+	strm >> leftVertexPos.x;
+	strm >> leftVertexPos.y;
 
 	Vector2d rightVertexPos;
-	strm >> rightVertexPos.first;
-	strm >> rightVertexPos.second;
+	strm >> rightVertexPos.x;
+	strm >> rightVertexPos.y;
 
 	std::string lineColor;
 	strm >> lineColor;
@@ -174,8 +175,5 @@ void CStreamHandler::ParseTriangleArgs(std::istringstream & strm)
 	strm >> fillColor;
 	Color fill = GetColor(lineColor);
 
-	m_shapes.push_back(std::make_shared<CTriangle>(CLineSegment(CPoint(topVertexPos), CPoint(leftVertexPos), line)
-		, CLineSegment(CPoint(leftVertexPos), CPoint(rightVertexPos), line)
-		, CLineSegment(CPoint(rightVertexPos), CPoint(topVertexPos), line)
-		, line, fill));
+	m_shapes.push_back(std::make_shared<CTriangle>(topVertexPos, leftVertexPos, rightVertexPos, line, fill));
 }

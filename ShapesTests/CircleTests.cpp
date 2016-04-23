@@ -1,16 +1,15 @@
 #include "stdafx.h"
-#include "HelpfulFunctions.h"
 #include "../Shapes/Circle.h"
-#include <iostream>
 
 struct Circle_
 {
 	Color expectedColor;
 	double expectedArea = M_PI * 100;
 	double expectedPerimeter = 2 * M_PI * 10;
+	Vector2d expectedCenterPosition;
 	CCircle circle;
 	Circle_()
-		: circle(CPoint({ 0,0 }, expectedColor), 10, expectedColor, expectedColor)
+		: circle(expectedCenterPosition, 10, expectedColor, expectedColor)
 	{}
 };
 
@@ -43,7 +42,7 @@ BOOST_AUTO_TEST_CASE(has_a_perimeter)
 
 BOOST_AUTO_TEST_CASE(can_be_converted_to_string)
 {
-	const auto expectedString = "Circle: <Point: <0.000000,0.000000>,10.000000>, P=62.831853, S=314.159265";
+	const auto expectedString = "Circle: <0.000000:0.000000,10.000000>, P=62.831853, S=314.159265";
 	BOOST_CHECK_EQUAL(static_cast<const CAbstractSolidShape &>(circle).GetDescription(), expectedString);
 }
 

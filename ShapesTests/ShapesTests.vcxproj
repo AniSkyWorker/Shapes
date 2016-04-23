@@ -168,7 +168,6 @@
     <ClInclude Include="..\Shapes\Shape.h" />
     <ClInclude Include="..\Shapes\SolidShape.h" />
     <ClInclude Include="..\Shapes\Triangle.h" />
-    <ClInclude Include="HelpfulFunctions.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -181,7 +180,6 @@
     <ClCompile Include="..\Shapes\SolidShape.cpp" />
     <ClCompile Include="..\Shapes\Triangle.cpp" />
     <ClCompile Include="CircleTests.cpp" />
-    <ClCompile Include="HelpfulFunctions.cpp" />
     <ClCompile Include="LineSegmentTests.cpp" />
     <ClCompile Include="PointTests.cpp" />
     <ClCompile Include="RectangleTests.cpp" />

@@ -1,24 +1,18 @@
 #pragma once
 #include "Shape.h"
-#include "Point.h"
 
 class CLineSegment : public CAbstractShape
 {
 public:
-	CLineSegment(const CPoint & start, const CPoint & end, const Color & color)
-		: m_startPoint(start), m_endPoint(end)
-	{
-		m_lineColor = color;
-		SetLength();
-	}
+	CLineSegment(const Vector2d & startPos, const Vector2d & endPos, const Color & color);
 
-	virtual std::string GetDescription() const override;
-	virtual double GetPerimeter() const override;
+	std::string GetDescription() const override;
+	double GetPerimeter() const override;
+
+	Vector2d GetStartPointPosition() const;
+	Vector2d GetEndPointPosition() const;
 
 private:
-	void SetLength();
-
-	CPoint m_startPoint;
-	CPoint m_endPoint;
-	double m_length;
+	Vector2d m_startPosition;
+	Vector2d m_endPosition;
 };

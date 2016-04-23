@@ -1,23 +1,19 @@
 #pragma once
 #include "SolidShape.h"
-#include "Point.h"
 
 class CCircle : public CAbstractSolidShape
 {
 public:
-	CCircle(const CPoint & center, const double & radius,
-		const Color & fillColor, const Color & lineColor)
-		: m_center(center), m_radius(radius)
-	{
-		m_fillColor = fillColor;
-		m_lineColor = lineColor;
-	}
+	CCircle(const Vector2d & center, const double & radius, const Color & fillColor, const Color & lineColor);
 
-	virtual std::string GetDescription() const override;
-	virtual double GetPerimeter() const override;
-	virtual double GetArea() const override;
+	std::string GetDescription() const override;
+	double GetPerimeter() const override;
+	double GetArea() const override;
+
+	Vector2d GetCenterPosition() const;
+	double GetRadius() const;
 
 private:
-	CPoint m_center;
+	Vector2d m_centerPosition;
 	double m_radius;
 };

@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "HelpfulFunctions.h"
 #include "../Shapes/LineSegment.h"
 
 struct LineSegment_
@@ -9,7 +8,7 @@ struct LineSegment_
 	double expectedPerimeter = 3;
 	CLineSegment lineSegment;
 	LineSegment_()
-		: lineSegment(CPoint({ -1, 0 }, expectedColor), CPoint({ 2, 0 }, expectedColor), expectedColor)
+		: lineSegment(Vector2d(-1, 0), Vector2d(2, 0), expectedColor)
 	{}
 };
 
@@ -37,7 +36,7 @@ BOOST_FIXTURE_TEST_SUITE(LineSegment, LineSegment_)
 
 	BOOST_AUTO_TEST_CASE(can_be_converted_to_string)
 	{
-		const auto expectedString = "LineSegment: <Point: <-1.000000,0.000000>,Point: <2.000000,0.000000>>, P=3.000000";
+		const auto expectedString = "LineSegment: <-1.000000:0.000000,2.000000:0.000000>, P=3.000000";
 		BOOST_CHECK_EQUAL(static_cast<const CAbstractShape &>(lineSegment).GetDescription(), expectedString);
 	}
 BOOST_AUTO_TEST_SUITE_END()

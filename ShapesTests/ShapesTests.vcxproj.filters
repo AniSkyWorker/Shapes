@@ -45,9 +45,6 @@
     <ClInclude Include="..\Shapes\SolidShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HelpfulFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -78,9 +75,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LineSegmentTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HelpfulFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RectangleTests.cpp">

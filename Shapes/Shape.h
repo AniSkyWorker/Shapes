@@ -1,6 +1,13 @@
 #pragma once
 
-typedef std::pair<double, double> Vector2d;
+struct Vector2d
+{
+	explicit Vector2d(double x, double y) : x(x), y(y) {}
+	Vector2d() : x(0), y(0) {}
+
+	double x;
+	double y;
+};
 
 struct Color
 {
@@ -37,3 +44,16 @@ protected:
 	double m_area = 0;
 	Color m_lineColor;
 };
+
+namespace
+{
+	double GetLineSgmentLenght(const Vector2d & first, const Vector2d & second)
+	{
+		return std::hypot(second.x - first.x, second.y - first.y);
+	}
+
+	bool AreColorsEqual(const Color & first, const Color & second)
+	{
+		return first.r == second.r && first.b == second.b && first.g == second.g;
+	}
+}

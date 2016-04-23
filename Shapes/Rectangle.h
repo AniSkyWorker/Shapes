@@ -1,23 +1,19 @@
 #pragma once
 #include "SolidShape.h"
-#include "Point.h"
 
 class CRectangle : public CAbstractSolidShape
 {
 public:
-	CRectangle(const CPoint & upleftPoint, const Vector2d & widthHeght,const Color & fillColor, const Color & lineColor)
-		: m_upleftPoint(upleftPoint), m_widthHeight(widthHeght)
-	{
-		m_fillColor = fillColor;
-		m_lineColor = lineColor;
-	}
+	CRectangle(const Vector2d & upleftPoint, const Vector2d & dimensions, const Color & fillColor, const Color & lineColor);
 
-	// TODO: remove extra virtual keyword
-	virtual std::string GetDescription() const override;
-	virtual double GetPerimeter() const override;
-	virtual double GetArea() const override;
+	std::string GetDescription() const override;
+	double GetPerimeter() const override;
+	double GetArea() const override;
+
+	Vector2d GetPointPosition() const;
+	Vector2d GetDimensions() const;
 
 private:
-	CPoint m_upleftPoint;
-	Vector2d m_widthHeight;
+	Vector2d m_pointPosition;
+	Vector2d m_dimensions;
 };

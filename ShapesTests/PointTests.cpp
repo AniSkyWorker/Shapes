@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "HelpfulFunctions.h"
 #include "../Shapes/Point.h"
 
 struct Point_
@@ -9,7 +8,7 @@ struct Point_
 	double expectedPerimeter = 0;
 	CPoint point;
 	Point_()
-		: point({ 1.5, -5.5 }, expectedColor)
+		: point(Vector2d(1.5, -5.5), expectedColor)
 	{}
 };
 

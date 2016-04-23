@@ -1,11 +1,19 @@
 #include "stdafx.h"
 #include "Rectangle.h"
 
+CRectangle::CRectangle(const Vector2d & upleftPoint, const Vector2d & dimensions, const Color & fillColor, const Color & lineColor)
+	: m_pointPosition(upleftPoint), m_dimensions(dimensions)
+{
+	m_fillColor = fillColor;
+	m_lineColor = lineColor;
+}
+
+
 std::string CRectangle::GetDescription() const
 {
 	std::string description = "Rectangle: ";
-	description += "<" + m_upleftPoint.GetDescription() + "," 
-		+ "{width=" + std::to_string(m_widthHeight.first) + ",height=" + std::to_string(m_widthHeight.second) + "}" + ">, "
+	description += "<" + std::to_string(m_pointPosition.x)+ ":" + std::to_string(m_pointPosition.y) + ","
+		+ "{width=" + std::to_string(m_dimensions.x) + ",height=" + std::to_string(m_dimensions.y) + "}" + ">, "
 		+ "P=" + std::to_string(GetPerimeter()) + ", "
 		+ "S=" + std::to_string(GetArea());
 	return description;
@@ -13,10 +21,20 @@ std::string CRectangle::GetDescription() const
 
 double CRectangle::GetPerimeter() const
 {
-	return m_widthHeight.first * 2 + m_widthHeight.second * 2;
+	return m_dimensions.x * 2 + m_dimensions.y * 2;
 }
 
 double CRectangle::GetArea() const
 {
-	return m_widthHeight.first * m_widthHeight.second;
+	return m_dimensions.x * m_dimensions.y;
+}
+
+Vector2d CRectangle::GetPointPosition() const
+{
+	return m_pointPosition;
+}
+
+Vector2d CRectangle::GetDimensions() const
+{
+	return m_dimensions;
 }
