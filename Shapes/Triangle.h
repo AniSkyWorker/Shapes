@@ -11,6 +11,10 @@ public:
 	double GetPerimeter() const override;
 	double GetArea() const override;
 
+	Vector2d GetFirstPointPosition() const;
+	Vector2d GetSecondPointPosition() const;
+	Vector2d GetThirdPointPosition() const;
+
 private:
 	Vector2d m_firstPointPosition;
 	Vector2d m_secondPointPosition;

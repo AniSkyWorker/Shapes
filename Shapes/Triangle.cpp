@@ -35,3 +35,18 @@ double CTriangle::GetArea() const
 		* (halfPerimeter - GetLineSgmentLenght(m_secondPointPosition, m_thirdPointPosition))
 		* (halfPerimeter - GetLineSgmentLenght(m_firstPointPosition, m_thirdPointPosition)));
 }
+
+Vector2d CTriangle::GetFirstPointPosition() const
+{
+	return m_firstPointPosition;
+}
+
+Vector2d CTriangle::GetSecondPointPosition() const
+{
+	return m_secondPointPosition;
+}
+
+Vector2d CTriangle::GetThirdPointPosition() const
+{
+	return m_thirdPointPosition;
+}

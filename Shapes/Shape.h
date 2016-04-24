@@ -56,4 +56,9 @@ namespace
 	{
 		return first.r == second.r && first.b == second.b && first.g == second.g;
 	}
+
+	bool AreVectorsEqual(const Vector2d & first, const Vector2d & second)
+	{
+		return first.x == second.x && first.y == second.y;
+	}
 }

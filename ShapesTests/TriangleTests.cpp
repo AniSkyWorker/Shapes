@@ -6,9 +6,16 @@ struct Triangle_
 	Color expectedColor;
 	double expectedArea = 4.5;
 	double expectedPerimeter = 3 + 3 + std::hypot(3, 3);
+	Vector2d expectedFirstPointPosition;
+	Vector2d expectedSecondPointPosition;
+	Vector2d expectedThirdPointPosition;
 	CTriangle triangle;
+	
 	Triangle_()
-		: triangle(Vector2d(), Vector2d(0, 3), Vector2d(3, 0), expectedColor, expectedColor)
+		: expectedFirstPointPosition()
+		, expectedSecondPointPosition(0, 3)
+		, expectedThirdPointPosition(3, 0)
+		, triangle(expectedFirstPointPosition, expectedSecondPointPosition, expectedThirdPointPosition, expectedColor, expectedColor)
 	{}
 };
 
@@ -37,6 +44,13 @@ BOOST_FIXTURE_TEST_SUITE(Triangle, Triangle_)
 	BOOST_AUTO_TEST_CASE(has_a_perimeter)
 	{
 		BOOST_CHECK_EQUAL(static_cast<const CAbstractSolidShape &>(triangle).GetPerimeter(), expectedPerimeter);
+	}
+
+	BOOST_AUTO_TEST_CASE(has_a_point_positions)
+	{
+		BOOST_CHECK(AreVectorsEqual(triangle.GetFirstPointPosition(), expectedFirstPointPosition));
+		BOOST_CHECK(AreVectorsEqual(triangle.GetSecondPointPosition(), expectedSecondPointPosition));
+		BOOST_CHECK(AreVectorsEqual(triangle.GetThirdPointPosition(), expectedThirdPointPosition));
 	}
 
 	BOOST_AUTO_TEST_CASE(can_be_converted_to_string)

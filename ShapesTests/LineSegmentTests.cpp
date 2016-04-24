@@ -6,9 +6,14 @@ struct LineSegment_
 	Color expectedColor;
 	double expectedArea = 0;
 	double expectedPerimeter = 3;
+	Vector2d expectedStartPosition;
+	Vector2d expectedEndPosition;
 	CLineSegment lineSegment;
+
 	LineSegment_()
-		: lineSegment(Vector2d(-1, 0), Vector2d(2, 0), expectedColor)
+		: expectedStartPosition(-1, 0)
+		, expectedEndPosition(2, 0)
+		, lineSegment(expectedStartPosition, expectedEndPosition, expectedColor)
 	{}
 };
 
@@ -32,6 +37,12 @@ BOOST_FIXTURE_TEST_SUITE(LineSegment, LineSegment_)
 	BOOST_AUTO_TEST_CASE(has_a_perimeter)
 	{
 		BOOST_CHECK_EQUAL(static_cast<const CAbstractShape &>(lineSegment).GetPerimeter(), expectedPerimeter);
+	}
+
+	BOOST_AUTO_TEST_CASE(has_start_and_end_positions)
+	{
+		BOOST_CHECK(AreVectorsEqual(lineSegment.GetStartPointPosition(), expectedStartPosition));
+		BOOST_CHECK(AreVectorsEqual(lineSegment.GetEndPointPosition(), expectedEndPosition));
 	}
 
 	BOOST_AUTO_TEST_CASE(can_be_converted_to_string)

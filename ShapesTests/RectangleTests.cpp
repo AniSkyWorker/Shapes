@@ -6,9 +6,14 @@ struct Rectangle_
 	Color expectedColor;
 	double expectedArea = 20;
 	double expectedPerimeter = 18;
+	Vector2d expectedDimensions;
+	Vector2d expectedPointPosition;
 	CRectangle rect;
+
 	Rectangle_()
-		: rect(Vector2d(1, 0), Vector2d(4, 5), expectedColor, expectedColor)
+		: expectedDimensions(4, 5)
+		, expectedPointPosition(1, 0)
+		, rect(expectedPointPosition, expectedDimensions, expectedColor, expectedColor)
 	{}
 };
 
@@ -37,6 +42,16 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectangle_)
 	BOOST_AUTO_TEST_CASE(has_a_perimeter)
 	{
 		BOOST_CHECK_EQUAL(static_cast<const CAbstractSolidShape &>(rect).GetPerimeter(), expectedPerimeter);
+	}
+
+	BOOST_AUTO_TEST_CASE(has_a_dimensions)
+	{
+		BOOST_CHECK(AreVectorsEqual(rect.GetDimensions(), expectedDimensions));
+	}
+
+	BOOST_AUTO_TEST_CASE(has_a_point_position)
+	{
+		BOOST_CHECK(AreVectorsEqual(rect.GetPointPosition(), expectedPointPosition));
 	}
 
 	BOOST_AUTO_TEST_CASE(can_be_converted_to_string)
