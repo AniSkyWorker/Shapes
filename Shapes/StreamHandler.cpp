@@ -5,6 +5,10 @@
 #include "Rectangle.h"
 #include "Circle.h"
 #include "Point.h"
+#include "LineSegmentView.h"
+#include "RectangleView.h"
+#include "CircleView.h"
+#include "TriangleView.h"
 
 namespace
 {
@@ -34,11 +38,11 @@ CStreamHandler::CStreamHandler(std::string & input, std::ostream & output)
 	, m_output(output)
 	, m_actionMap
 	({
-		{ "Point", bind(&CStreamHandler::ParsePointArgs, this, std::placeholders::_1) },
-		{ "Line", bind(&CStreamHandler::ParseLineSegmentArgs, this, std::placeholders::_1) },
-		{ "Circle", bind(&CStreamHandler::ParseCircleArgs, this, std::placeholders::_1) },
-		{ "Rectangle", bind(&CStreamHandler::ParseRectangleArgs, this, std::placeholders::_1) },
-		{ "Triangle", bind(&CStreamHandler::ParseTriangleArgs, this, std::placeholders::_1) }
+		{ "point", bind(&CStreamHandler::AddPoint, this, std::placeholders::_1) },
+		{ "line", bind(&CStreamHandler::AddLineSegment, this, std::placeholders::_1) },
+		{ "circle", bind(&CStreamHandler::AddCircle, this, std::placeholders::_1) },
+		{ "rectangle", bind(&CStreamHandler::AddRectangle, this, std::placeholders::_1) },
+		{ "triangle", bind(&CStreamHandler::AddTriangle, this, std::placeholders::_1) }
 })
 {
 }
@@ -61,7 +65,7 @@ bool CStreamHandler::HandleCommand()
 	return false;
 }
 
-void CStreamHandler::PrintInfoAboutShapes(const std::vector<std::shared_ptr<IShape>> & arr) const
+void CStreamHandler::PrintInfo(const std::vector<std::shared_ptr<IShape>> & arr) const
 {
 	for (auto it : arr)
 	{
@@ -69,7 +73,7 @@ void CStreamHandler::PrintInfoAboutShapes(const std::vector<std::shared_ptr<ISha
 	}
 }
 
-void CStreamHandler::PrintSortedByPerimeterShapes() const
+void CStreamHandler::PrintShapesSortedByPerimeter() const
 {
 	auto copyArray = m_shapes;
 	std::sort(copyArray.begin(), copyArray.end(), [](const std::shared_ptr<IShape> & shape1, const std::shared_ptr<IShape> & shape2)
@@ -77,10 +81,10 @@ void CStreamHandler::PrintSortedByPerimeterShapes() const
 		return shape1->GetPerimeter() < shape2->GetPerimeter();
 	});
 
-	PrintInfoAboutShapes(copyArray);
+	PrintInfo(copyArray);
 }
 
-void CStreamHandler::PrintSortedBySquareShapes() const
+void CStreamHandler::PrintShapesSortedByArea() const
 {
 	auto copyArray = m_shapes;
 	std::sort(copyArray.begin(), copyArray.end(), [](const std::shared_ptr<IShape> & shape1, const std::shared_ptr<IShape> & shape2)
@@ -88,10 +92,10 @@ void CStreamHandler::PrintSortedBySquareShapes() const
 		return shape1->GetArea() < shape2->GetArea();
 	});
 
-	PrintInfoAboutShapes(copyArray);
+	PrintInfo(copyArray);
 }
 
-void CStreamHandler::ParsePointArgs(std::istringstream & strm)
+void CStreamHandler::AddPoint(std::istringstream & strm)
 {
 	Vector2d position;
 	strm >> position.x;
@@ -100,7 +104,7 @@ void CStreamHandler::ParsePointArgs(std::istringstream & strm)
 	m_shapes.push_back(std::make_shared<CPoint>(position));
 }
 
-void CStreamHandler::ParseLineSegmentArgs(std::istringstream & strm)
+void CStreamHandler::AddLineSegment(std::istringstream & strm)
 {
 	Vector2d firstPoint;
 	strm >> firstPoint.x;
@@ -114,9 +118,10 @@ void CStreamHandler::ParseLineSegmentArgs(std::istringstream & strm)
 	strm >> lineColor;
 
 	m_shapes.push_back(std::make_shared<CLineSegment>(firstPoint, secondPoint, GetColor(lineColor)));
+	m_shapeViews.push_back(std::make_shared<CLineSegmentView>(firstPoint, secondPoint, GetColor(lineColor)));
 }
 
-void CStreamHandler::ParseRectangleArgs(std::istringstream & strm)
+void CStreamHandler::AddRectangle(std::istringstream & strm)
 {
 	Vector2d leftUpPoint;
 	strm >> leftUpPoint.x;
@@ -132,10 +137,11 @@ void CStreamHandler::ParseRectangleArgs(std::istringstream & strm)
 	std::string fillColor;
 	strm >> fillColor;
 
-	m_shapes.push_back(std::make_shared<CRectangle>(leftUpPoint, dimensions, GetColor(lineColor), GetColor(fillColor)));
+	m_shapes.push_back(std::make_shared<CRectangle>(leftUpPoint, dimensions, GetColor(fillColor), GetColor(lineColor)));
+	m_shapeViews.push_back(std::make_shared<CRectangleView>(leftUpPoint, dimensions, GetColor(fillColor), GetColor(lineColor)));
 }
 
-void CStreamHandler::ParseCircleArgs(std::istringstream & strm)
+void CStreamHandler::AddCircle(std::istringstream & strm)
 {
 	Vector2d position;
 	strm >> position.x;
@@ -150,10 +156,11 @@ void CStreamHandler::ParseCircleArgs(std::istringstream & strm)
 	std::string fillColor;
 	strm >> fillColor;
 
-	m_shapes.push_back(std::make_shared<CCircle>(position, radius, GetColor(lineColor), GetColor(fillColor)));
+	m_shapes.push_back(std::make_shared<CCircle>(position, radius, GetColor(fillColor), GetColor(lineColor)));
+	m_shapeViews.push_back(std::make_shared<CCircleView>(position, radius, GetColor(fillColor), GetColor(lineColor)));
 }
 
-void CStreamHandler::ParseTriangleArgs(std::istringstream & strm)
+void CStreamHandler::AddTriangle(std::istringstream & strm)
 {
 	Vector2d topVertexPos;
 	strm >> topVertexPos.x;
@@ -169,11 +176,40 @@ void CStreamHandler::ParseTriangleArgs(std::istringstream & strm)
 
 	std::string lineColor;
 	strm >> lineColor;
-	Color line = GetColor(lineColor);
 
 	std::string fillColor;
 	strm >> fillColor;
-	Color fill = GetColor(lineColor);
 
-	m_shapes.push_back(std::make_shared<CTriangle>(topVertexPos, leftVertexPos, rightVertexPos, line, fill));
+	m_shapes.push_back(std::make_shared<CTriangle>(topVertexPos, leftVertexPos, rightVertexPos, GetColor(fillColor), GetColor(lineColor)));
+	m_shapeViews.push_back(std::make_shared<CTriangleView>(topVertexPos, leftVertexPos, rightVertexPos, GetColor(fillColor), GetColor(lineColor)));
+}
+
+void CStreamHandler::DrawShapes() const
+{
+	sf::RenderWindow window;
+	sf::ContextSettings settings;
+	settings.antialiasingLevel = 8;
+
+	window.create(sf::VideoMode(640, 640), "Shape Viewer", sf::Style::Default, settings);
+
+	while (window.isOpen())
+	{
+
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.clear(sf::Color::Black);
+
+		for (auto it = m_shapeViews.rbegin(); it != m_shapeViews.rend();it++)
+		{
+			window.draw(**it);
+		}
+
+		window.display();
+
+	}
 }

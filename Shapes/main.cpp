@@ -21,12 +21,13 @@ int main(int argc, char *argv[])
 		std::getline(std::cin, line);
 	}
 
-	handler.PrintSortedByPerimeterShapes();
+	handler.PrintShapesSortedByPerimeter();
 
 	std::cout << std::endl;
 
-	handler.PrintSortedBySquareShapes();
+	handler.PrintShapesSortedByArea();
 
+	handler.DrawShapes();
 	return 0;
 }
 

@@ -19,7 +19,12 @@ BOOST_FIXTURE_TEST_SUITE(Circle, Circle_)
 
 	BOOST_AUTO_TEST_CASE(is_a_solid_shape)
 	{
-		BOOST_CHECK(static_cast<const CAbstractSolidShape*>(&circle));
+		BOOST_CHECK(static_cast<const ISolidShape*>(&circle));
+	}
+
+	BOOST_AUTO_TEST_CASE(is_a_shape)
+	{
+		BOOST_CHECK(static_cast<const IShape*>(&circle));
 	}
 
 	BOOST_AUTO_TEST_CASE(has_a_line_color)

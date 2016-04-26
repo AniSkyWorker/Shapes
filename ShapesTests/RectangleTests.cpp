@@ -21,7 +21,12 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectangle_)
 
 	BOOST_AUTO_TEST_CASE(is_a_solid_shape)
 	{
-		BOOST_CHECK(static_cast<const CAbstractSolidShape*>(&rect));
+		BOOST_CHECK(static_cast<const ISolidShape*>(&rect));
+	}
+
+	BOOST_AUTO_TEST_CASE(is_a_shape)
+	{
+		BOOST_CHECK(static_cast<const IShape*>(&rect));
 	}
 
 	BOOST_AUTO_TEST_CASE(has_a_line_color)

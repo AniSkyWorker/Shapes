@@ -20,3 +20,4 @@
 #include <vector>
 #include <memory>
 #include <algorithm>
+#include <SFML/Graphics.hpp>

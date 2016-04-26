@@ -23,7 +23,12 @@ BOOST_FIXTURE_TEST_SUITE(Triangle, Triangle_)
 
 	BOOST_AUTO_TEST_CASE(is_a_solid_shape)
 	{
-		BOOST_CHECK(static_cast<const CAbstractSolidShape*>(&triangle));
+		BOOST_CHECK(static_cast<const ISolidShape*>(&triangle));
+	}
+	
+	BOOST_AUTO_TEST_CASE(is_a_shape)
+	{
+		BOOST_CHECK(static_cast<const IShape*>(&triangle));
 	}
 
 	BOOST_AUTO_TEST_CASE(has_a_line_color)
