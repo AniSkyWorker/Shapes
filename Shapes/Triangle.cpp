@@ -22,18 +22,18 @@ std::string CTriangle::GetDescription() const
 
 double CTriangle::GetPerimeter() const
 {
-	return GetLineSgmentLenght(m_firstPointPosition, m_secondPointPosition)
-		+ GetLineSgmentLenght(m_secondPointPosition, m_thirdPointPosition)
-		+ GetLineSgmentLenght(m_firstPointPosition, m_thirdPointPosition);
+	return GetLineSegmentLenght(m_firstPointPosition, m_secondPointPosition)
+		+ GetLineSegmentLenght(m_secondPointPosition, m_thirdPointPosition)
+		+ GetLineSegmentLenght(m_firstPointPosition, m_thirdPointPosition);
 }
 
 double CTriangle::GetArea() const
 {
 	double halfPerimeter = GetPerimeter() / 2;
 	return std::sqrt(halfPerimeter
-		* (halfPerimeter - GetLineSgmentLenght(m_firstPointPosition, m_secondPointPosition))
-		* (halfPerimeter - GetLineSgmentLenght(m_secondPointPosition, m_thirdPointPosition))
-		* (halfPerimeter - GetLineSgmentLenght(m_firstPointPosition, m_thirdPointPosition)));
+		* (halfPerimeter - GetLineSegmentLenght(m_firstPointPosition, m_secondPointPosition))
+		* (halfPerimeter - GetLineSegmentLenght(m_secondPointPosition, m_thirdPointPosition))
+		* (halfPerimeter - GetLineSegmentLenght(m_firstPointPosition, m_thirdPointPosition)));
 }
 
 Vector2d CTriangle::GetFirstPointPosition() const

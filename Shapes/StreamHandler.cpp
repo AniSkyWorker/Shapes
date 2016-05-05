@@ -202,11 +202,11 @@ void CStreamHandler::DrawShapes() const
 				window.close();
 		}
 
-		window.clear(sf::Color::Black);
+		window.clear(sf::Color::White);
 
-		for (auto it = m_shapeViews.rbegin(); it != m_shapeViews.rend();it++)
+		for (auto ptr : m_shapeViews)
 		{
-			window.draw(**it);
+			window.draw(*ptr);
 		}
 
 		window.display();

@@ -23,7 +23,7 @@ BOOST_FIXTURE_TEST_SUITE(Point, Point_)
 
 	BOOST_AUTO_TEST_CASE(has_a_color)
 	{
-		BOOST_CHECK(AreColorsEqual(static_cast<const CAbstractShape &>(point).GetLineColor(), expectedColor));
+		BOOST_CHECK(static_cast<const CAbstractShape &>(point).GetLineColor() == expectedColor);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_an_area_equal_to_zero)
@@ -38,7 +38,7 @@ BOOST_FIXTURE_TEST_SUITE(Point, Point_)
 
 	BOOST_AUTO_TEST_CASE(has_a_position)
 	{
-		BOOST_CHECK(AreVectorsEqual(point.GetPosition(), expectedPosition));
+		BOOST_CHECK(point.GetPosition() == expectedPosition);
 	}
 
 	BOOST_AUTO_TEST_CASE(can_be_converted_to_string)

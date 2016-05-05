@@ -26,7 +26,7 @@ BOOST_FIXTURE_TEST_SUITE(LineSegment, LineSegment_)
 
 	BOOST_AUTO_TEST_CASE(has_a_color)
 	{
-		BOOST_CHECK(AreColorsEqual(static_cast<const CAbstractShape &>(lineSegment).GetLineColor(), expectedColor));
+		BOOST_CHECK(static_cast<const CAbstractShape &>(lineSegment).GetLineColor() == expectedColor);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_an_area_equal_to_zero)
@@ -41,8 +41,8 @@ BOOST_FIXTURE_TEST_SUITE(LineSegment, LineSegment_)
 
 	BOOST_AUTO_TEST_CASE(has_start_and_end_positions)
 	{
-		BOOST_CHECK(AreVectorsEqual(lineSegment.GetStartPointPosition(), expectedStartPosition));
-		BOOST_CHECK(AreVectorsEqual(lineSegment.GetEndPointPosition(), expectedEndPosition));
+		BOOST_CHECK(lineSegment.GetStartPointPosition() == expectedStartPosition);
+		BOOST_CHECK(lineSegment.GetEndPointPosition() == expectedEndPosition);
 	}
 
 	BOOST_AUTO_TEST_CASE(can_be_converted_to_string)

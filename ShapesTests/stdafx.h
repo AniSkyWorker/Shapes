@@ -11,8 +11,7 @@
 #include <tchar.h>
 
 #include <string>
-#include "../Shapes/Shape.h"
-#include "../Shapes/SolidShape.h"
+#include <tuple>
 
 #define BOOST_TEST_MODULE MyTestModule
 #define BOOST_TEST_INCLUDED

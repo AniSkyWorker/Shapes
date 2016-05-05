@@ -29,12 +29,12 @@ BOOST_FIXTURE_TEST_SUITE(Circle, Circle_)
 
 	BOOST_AUTO_TEST_CASE(has_a_line_color)
 	{
-		BOOST_CHECK(AreColorsEqual(static_cast<const CAbstractSolidShape &>(circle).GetLineColor(), expectedColor));
+		BOOST_CHECK(static_cast<const CAbstractSolidShape &>(circle).GetLineColor() == expectedColor);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_a_fill_color)
 	{
-		BOOST_CHECK(AreColorsEqual(static_cast<const CAbstractSolidShape &>(circle).GetFillColor(), expectedColor));
+		BOOST_CHECK(static_cast<const CAbstractSolidShape &>(circle).GetFillColor() == expectedColor);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_an_area)
@@ -49,7 +49,7 @@ BOOST_FIXTURE_TEST_SUITE(Circle, Circle_)
 
 	BOOST_AUTO_TEST_CASE(has_a_center_position)
 	{
-		BOOST_CHECK(AreVectorsEqual(circle.GetCenterPosition(), expectedCenterPosition));
+		BOOST_CHECK(circle.GetCenterPosition() == expectedCenterPosition);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_a_radius)

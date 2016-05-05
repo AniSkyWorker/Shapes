@@ -31,12 +31,12 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectangle_)
 
 	BOOST_AUTO_TEST_CASE(has_a_line_color)
 	{
-		BOOST_CHECK(AreColorsEqual(static_cast<const CAbstractSolidShape &>(rect).GetLineColor(), expectedColor));
+		BOOST_CHECK(static_cast<const CAbstractSolidShape &>(rect).GetLineColor() == expectedColor);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_a_fill_color)
 	{
-		BOOST_CHECK(AreColorsEqual(static_cast<const CAbstractSolidShape &>(rect).GetFillColor(), expectedColor));
+		BOOST_CHECK(static_cast<const CAbstractSolidShape &>(rect).GetFillColor() == expectedColor);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_an_area)
@@ -51,12 +51,12 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectangle_)
 
 	BOOST_AUTO_TEST_CASE(has_a_dimensions)
 	{
-		BOOST_CHECK(AreVectorsEqual(rect.GetDimensions(), expectedDimensions));
+		BOOST_CHECK(rect.GetDimensions() == expectedDimensions);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_a_point_position)
 	{
-		BOOST_CHECK(AreVectorsEqual(rect.GetPointPosition(), expectedPointPosition));
+		BOOST_CHECK(rect.GetPointPosition() == expectedPointPosition);
 	}
 
 	BOOST_AUTO_TEST_CASE(can_be_converted_to_string)

@@ -4,7 +4,7 @@
 class CPoint : public CAbstractShape
 {
 public:
-	CPoint(const Vector2d & position, const Color & color = Color());
+	explicit CPoint(const Vector2d & position, const Color & color = Color());
 
 	std::string GetDescription() const override;
 	Vector2d GetPosition() const;

@@ -5,6 +5,10 @@ struct Vector2d
 	explicit Vector2d(double x, double y) : x(x), y(y) {}
 	Vector2d() : x(0), y(0) {}
 
+	bool operator==(const Vector2d & other)
+	{
+		return std::tie(x, y) == std::tie(other.x, other.y);
+	}
 	double x;
 	double y;
 };
@@ -13,6 +17,11 @@ struct Color
 {
 	explicit Color(unsigned r, unsigned g, unsigned b) : r(r), g(g), b(b) {}
 	Color() : r(0), g(0), b(0) {}
+
+	bool operator ==(const Color & other)const
+	{
+		return std::tie(r, g, b) == std::tie(other.r, other.g, other.b);
+	}
 
 	unsigned r;
 	unsigned g;
@@ -47,18 +56,8 @@ protected:
 
 namespace
 {
-	double GetLineSgmentLenght(const Vector2d & first, const Vector2d & second)
+	double GetLineSegmentLenght(const Vector2d & first, const Vector2d & second)
 	{
 		return std::hypot(second.x - first.x, second.y - first.y);
-	}
-
-	bool AreColorsEqual(const Color & first, const Color & second)
-	{
-		return first.r == second.r && first.b == second.b && first.g == second.g;
-	}
-
-	bool AreVectorsEqual(const Vector2d & first, const Vector2d & second)
-	{
-		return first.x == second.x && first.y == second.y;
 	}
 }

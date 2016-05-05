@@ -18,7 +18,7 @@ std::string CLineSegment::GetDescription() const
 
 double CLineSegment::GetPerimeter() const
 {
-	return GetLineSgmentLenght(m_startPosition, m_endPosition);
+	return GetLineSegmentLenght(m_startPosition, m_endPosition);
 }
 
 Vector2d CLineSegment::GetStartPointPosition() const

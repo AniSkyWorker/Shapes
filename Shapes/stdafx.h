@@ -21,3 +21,4 @@
 #include <memory>
 #include <algorithm>
 #include <SFML/Graphics.hpp>
+#include <tuple>
